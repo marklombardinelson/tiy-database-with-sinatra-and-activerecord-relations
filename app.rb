@@ -80,6 +80,8 @@ end
 
 class Course < ActiveRecord::Base
   self.primary_key = :id
+
+  belongs to :employee
 end
 
 # Sinatra code starts here

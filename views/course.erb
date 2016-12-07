@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Course</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -33,51 +33,30 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/employees">Employees</a></li>
+            <li class="active"><a href="/courses">Courses</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container-fluid">
-      <form action="/search_employee">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" name="search">
-          <button type="submit" class="btn btn-default">Submit</button>
-        </div>
-
-      </form>
-      <table class="table table-bordered table-condensed table-hover">
-        <thead>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Address</th>
-          <th>Position</th>
-          <th>Monthly Salary</th>
-          <th>Github</th>
-          <th>Slack</th>
-          <th>Links</th>
-        </thead>
-        <tbody>
-          <% @employees.each do |employee| %>
-          <tr>
-            <td><%= employee.name %></td>
-            <td><%= employee.phone %></td>
-            <td><%= employee.address %></td>
-            <td><%= employee.position %></td>
-            <td><%= employee.monthly_salary %></td>
-            <td><%= employee.github %></td>
-            <td><%= employee.slack %></td>
-            <td>
-              <a href="/show_employee?id=<%= employee.id %>">Show</a>
-              <a href="/edit_employee?id=<%= employee.id %>">Edit</a>
-              <a href="/delete_employee?id=<%= employee.id %>">Delete</a>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <a href="/new_employee" class="btn btn-primary">New employee</a>
+      <div class="page-header">
+        <h1>Course details</h1>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item"><%= @course.name %></li>
+        <li class="list-group-item"><%= @course.subject %></li>
+        <li class="list-group-item"><%= @course.start_date %></li>
+        <li class="list-group-item"><%= @course.end_date %></li>
+        <li class="list-group-item"><%= @course.intensive %></li>
+        <% if @course.employee %>
+        <li class="list-group-item">Teacher: <%= @course.employee.name %></li>
+        <% else %>
+        <li class="list-group-item">No Teacher Found</li>
+        <% end %>
+      </ul>
+      <a href="/edit_course?id=<%= @course.id %>" class="btn btn-primary">Edit course</a>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
